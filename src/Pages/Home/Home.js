@@ -4,11 +4,13 @@ import CurrentQuestion from '../../components/Question/CurrentQuestion';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import './Home.css';
+import CountDown from '../../components/CountDown/CountDown';
 
 const Home = () => {
     const question = [];
     // Set date from database
-    let dates = new Date(2020, 11, 30);
+    let dates = new Date(2020, 11, 9);
+
     const [state, setState] = useState({
         time: null,
     });
@@ -36,27 +38,27 @@ const Home = () => {
         s = checkTime(s);
 
         // setting here the expariation date.
-        let dates = new Date(2020, 11, 7);
+
 
         let diffrence = (dates.getDate() - today.getDate()).toString() +
 
             (dates.getDate() - today.getDate() > 1
-            ? " dena: "
-            : " den: ")
+                ? " dena: "
+                : " den: ")
 
             + (((dates.getDate() - today.getDate()) * 24)
-            - (today.getHours() - dates.getHours()) - 1)
+                - (today.getHours() - dates.getHours()) - 1)
             +
             ":" + (60 - today.getMinutes())
             + ":" +
             (60 - today.getSeconds() < 10
-            ? ("0" + (60 - today.getSeconds()).toString())
-            : 60 - today.getSeconds());
+                ? ("0" + (60 - today.getSeconds()).toString())
+                : 60 - today.getSeconds());
 
         if (dates.getDate() <= today.getDate()) {
             // Check if it's in the alowed timestamp
             // Allow to vote
-            
+
         }
         setState({
             diffrence: diffrence,
@@ -71,7 +73,10 @@ const Home = () => {
 
         <div className="text-center timer__counter">
             Sega6no vreme: {state?.time} <br />
-            Ostava6to vreme: {state?.diffrence}
+            Ostava6to vreme: <CountDown date={"2020, 11, 11"} /> <br />
+            Kraina data: {dates.toDateString()}
+
+
         </div>
 
         {Array(1)

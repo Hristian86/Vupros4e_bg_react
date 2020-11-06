@@ -3,11 +3,22 @@
     align-items: center;
     object-fit: contain;
     width: 100%;
+    background-color: white!important;
 }
 
 .header__logo {
-    width: 100px;
+    width: 80px;
 }
+
+.header__link {
+    text-decoration: none;
+    /*color: #ddc436;*/
+}
+
+/*.header__link:hover {
+    text-decoration: none;
+    color: #36c649!important;
+}*/
 
 .header2 {
     display: flex;
@@ -34,4 +45,10 @@
     justify-content: end;
     width: 10%;
     padding-top: 12px;
+}
+
+@media only screen and (max-width: 900px) {
+    .header2 {
+        display: grid;
+    }
 }

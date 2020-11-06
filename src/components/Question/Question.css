@@ -1,0 +1,20 @@
+.question__left {
+    border: 1px solid #808080;
+    border-radius: 15px;
+    height: 300px;
+}
+
+.question__right {
+    margin-left: 10px;
+    margin-right: -10px;
+    border: 1px solid #808080;
+    border-radius: 15px;
+    height: 300px;
+}
+
+@media only screen and (max-width: 900px) {
+    .question__right {
+        margin-left: 0px!important;
+        margin-right: 0px!important;
+    }
+}

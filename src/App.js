@@ -26,6 +26,7 @@ import NotFound from './Pages/NotFoundPage/NotFount';
 import Home from './Pages/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import HeaderLogo from './components/Header/HeaderLogo';
 
 const App = () => {
 
@@ -111,6 +112,7 @@ const App = () => {
                 <Router>
 
                     {/* Navigation bar */}
+                    <HeaderLogo />
                     <Header />
 
                     <Switch>
@@ -118,12 +120,15 @@ const App = () => {
                         <Route exact path="/authO/register">
                             <Register />
                         </Route>
+
                         <Route exact path="/authO/login">
                             <Login />
                         </Route>
+
                         <Route exact path="/authO/logout">
                             <Logout />
                         </Route>
+
                         <Route exact path="/adminpage">
                             <AdminPage />
                         </Route>

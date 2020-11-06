@@ -3,7 +3,7 @@
     align-items: center;
     object-fit: contain;
     width: 100%;
-    background-color: white!important;
+    background-color: rgba(222,222,222, 03)!important;
 }
 
 .header__logo {
@@ -15,15 +15,15 @@
     /*color: #ddc436;*/
 }
 
-/*.header__link:hover {
+.header__link:hover {
     text-decoration: none;
-    color: #36c649!important;
-}*/
+    /*color: #36c649!important;*/
+}
 
 .header2 {
     display: flex;
     justify-content: space-between;
-    width: 70%;
+    width: 80%;
     margin: auto;
 }
 

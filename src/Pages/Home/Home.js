@@ -8,8 +8,9 @@ import CountDown from '../../components/CountDown/CountDown';
 
 const Home = () => {
     const question = [];
-    // Set date from database
-    let dates = new Date(2020, 11, 9);
+    // Set date from database\
+    const endDate = "2020, 11, 10";
+    let dates = new Date(endDate);
 
     const [state, setState] = useState({
         time: null,
@@ -22,11 +23,11 @@ const Home = () => {
         return i;
     }
 
-    useEffect(() => {
-        setInterval(() => {
-            startTime()
-        }, 500);
-    }, []);
+    //useEffect(() => {
+    //    setInterval(() => {
+    //        startTime()
+    //    }, 500);
+    //}, []);
 
     const startTime = () => {
         var today = new Date();
@@ -38,46 +39,27 @@ const Home = () => {
         s = checkTime(s);
 
         // setting here the expariation date.
-
-
-        let diffrence = (dates.getDate() - today.getDate()).toString() +
-
-            (dates.getDate() - today.getDate() > 1
-                ? " dena: "
-                : " den: ")
-
-            + (((dates.getDate() - today.getDate()) * 24)
-                - (today.getHours() - dates.getHours()) - 1)
-            +
-            ":" + (60 - today.getMinutes())
-            + ":" +
-            (60 - today.getSeconds() < 10
-                ? ("0" + (60 - today.getSeconds()).toString())
-                : 60 - today.getSeconds());
-
         if (dates.getDate() <= today.getDate()) {
             // Check if it's in the alowed timestamp
             // Allow to vote
 
         }
         setState({
-            diffrence: diffrence,
             time: h + ":" + m + ":" + s,
         });
     }
+    // Date createdOn
     let dateBack = new Date("2020/11/5");
 
     return <div className="Home">
 
         <h2 className="text-center pt-3 pb-3">Aktualen vupros</h2>
 
-        <div className="text-center timer__counter">
+        {/*<div className="text-center timer__counter">
             Sega6no vreme: {state?.time} <br />
-            Ostava6to vreme: <CountDown date={"2020, 11, 11"} /> <br />
-            Kraina data: {dates.toDateString()}
-
-
-        </div>
+            Ostava6to vreme: <CountDown date={endDate} /> <br />
+            Kraina data: {endDate}
+        </div>*/}
 
         {Array(1)
             .fill()

@@ -35,7 +35,7 @@ const Register = () => {
         const userName = e.target.userName.value;
         const password = e.target.password.value;
         const passwordConf = e.target.passwordConf.value;
-        debugger
+
         try {
 
             error.innerHTML = "";
@@ -53,7 +53,13 @@ const Register = () => {
                     const result = await RegAuth(payload);
                     const user = result;
 
-                    if (result.error) {
+                    if (result === "User created") {
+                        error.innerHTML = "Account created suceesfully";
+
+                        setTimeout(function () {
+                            history.push("/authO/login");
+                        }, 700);
+                    }else if (result.error) {
                         error.innerHTML = "This email is already taken";
                         setState({
                             buttonPushed: false

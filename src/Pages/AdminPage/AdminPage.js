@@ -25,12 +25,9 @@ const AdminPage = () => {
 
         const payload = {
             title: e.target.title.value,
-            categoryid: Number(e.target.categoryid.value),
-            rating: Number(e.target.rating.value),
-            quantity: Number(e.target.quantity.value),
             imageurl: e.target.imageurl.value,
-            price: Number(e.target.price.value),
             content: e.target.content.value,
+            description: e.target.content.value,
         }
 
         //validations for the inputs
@@ -43,7 +40,7 @@ const AdminPage = () => {
 
                 if (await result === "email send") {
 
-                    const isCreated = await FetchData("product", payload, "POST");
+                    const isCreated = await FetchData("api/question", payload, "POST");
                     if (isCreated === "success") {
                         setState({
                             success: true
@@ -62,7 +59,7 @@ const AdminPage = () => {
                         });
 
                     } else {
-                        alert(isCreated);
+
                         setState({
                             procesing: false
                         });
@@ -171,6 +168,7 @@ const AdminPage = () => {
             </div>
         </div>
 
+        <div className="text-center" id="errors"></div>
 
         <div className="row">
             <div className="col-lg-4"></div>

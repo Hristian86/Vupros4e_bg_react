@@ -19,7 +19,6 @@ const Header = () => {
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="bg-white" />
         <Navbar.Collapse id="basic-navbar-nav">
-            <div id="time"></div>
 
             <HeaderLinks />
 

@@ -5,6 +5,8 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question }) => {
     return <div className="media w-100">
         <div className="media-body">
 
+            <h3 id="time"></h3>
+
             <div className="row">
                 <div className="col-4">
                     <img class="mr-3" className="question__image" src={image} />

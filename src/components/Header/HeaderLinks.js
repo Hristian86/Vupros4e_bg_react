@@ -97,7 +97,7 @@ const HeaderLinks = () => {
             <Link
                 className="header__link text-white shadow-box"
                 onClick={upPage}
-                to="/">
+                to="/forumpage">
                 Forum
                     </Link>
         </div>

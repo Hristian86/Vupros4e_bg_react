@@ -1,18 +1,43 @@
 import React from 'react';
 import './CurrentQuestion.css';
+import getCookie from '../Cookies/GetCookie';
+import { useHistory } from 'react-router';
 
-const CurrentQuestion = ({ id, image, createdOn, userName, question }) => {
-    return <div className="media w-100">
+const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount }) => {
+
+    const role = getCookie("role");
+    const history = useHistory();
+
+    const commentHandler = () => {
+        history.push(`/comments/${id}`);
+    }
+
+    return <div className="media w-100 mb-3 bg-white">
         <div className="media-body">
 
             <h3 id="time"></h3>
 
             <div className="row">
                 <div className="col-4">
-                    <img class="mr-3" className="question__image" src={image} />
+                    <img className="mr-3" className="question__image" src={image} />
                 </div>
+
+                <div>
+                    {role === "Admin"
+                        ? <button className="btn btn-danger mt-5">Delete</button>
+                        : null}
+
+                    {role === "Admin"
+                        ? <button className="mt-5 btn btn-warning ml-3">Update</button>
+                        : null}
+                </div>
+
                 <div className="col-9">
                     <div>Question {question} </div>
+                </div>
+
+                <div className="text-right pr-sm-2 w-100">
+                    <button onClick={commentHandler} className="btn btn-primary">Comments</button>
                 </div>
             </div>
             <hr />
@@ -22,13 +47,13 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question }) => {
                 </div>
 
                 <div className="col-6 text-right">
-                    <i className="fa fa-user"></i> {userName}
+                    <i className="fa fa-comment"></i> {commentsCount}
                 </div>
             </div>
             <hr />
             <div>
                 <div className="d-flex justify-content-between">
-                    <h3>Glasuvane za aktualniq vupros <i className="fa fa-arrow-right"></i></h3>
+                    {actual === 'on' ? <h3>Glasuvane za aktualniq vupros <i className="fa fa-arrow-right"></i></h3> : null}
                     <form id="votesForm" method="post">
                         <input type="hidden" />
                     </form>

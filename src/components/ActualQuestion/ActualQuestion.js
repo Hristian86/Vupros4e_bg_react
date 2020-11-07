@@ -68,6 +68,9 @@ const ActualQeustion = () => {
                     </div> : null}
 
                     <CurrentQuestion
+                        commentsCount={data?.commentsCount}
+                        actual={data?.isActual}
+                        id={data?.id}
                         title={data?.title ? data.title : null}
                         image={data?.imageUrl ? data.imageUrl : null}
                         userName={"go6o " + index ? index : null + 1}

@@ -43,7 +43,12 @@ const FetchData = async (apiController, payload, method) => {
 
         const result = await fetch(first__parametar, second_parametar)
             .then(res => res.json())
-            .catch(err => console.log(err));
+            .catch(err => {
+                const error = {
+                    error: err
+                }
+                return error;
+            });
 
         if (await result) {
             //console.log(result);
@@ -51,7 +56,10 @@ const FetchData = async (apiController, payload, method) => {
         }
 
     } catch (e) {
-        return e;
+        const error = {
+            error: e
+        }
+        return error;
     }
 }
 

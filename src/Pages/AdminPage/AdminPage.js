@@ -3,9 +3,10 @@ import { useState } from 'react';
 import Validate, { validateEmail } from '../../components/Validate/Validate';
 import './AdminPage.css';
 import FetchData from '../../components/AuthListener/FetchData';
+import { useHistory } from 'react-router';
 
 const AdminPage = () => {
-
+    const history = useHistory();
     const [state, setState] = useState({
         success: false,
         procesing: false,
@@ -39,7 +40,7 @@ const AdminPage = () => {
             if (true) {
                 const result = "email send";
                 //await SendEmail(email, subject, name, content);
-                
+
                 if (await result === "email send") {
 
                     const isCreated = await FetchData("api/question", payload, "POST");
@@ -158,10 +159,17 @@ const AdminPage = () => {
         }
     }
 
+    const questionHandler = () => {
+        history.push("/adminpage/questions")
+    }
+
     return <div className="create-backs">
 
         {/* <Successully uid={this.state.uid} /> */}
         {/*{this.state.procesing ? <span id="message" className="procesing">Procesing...</span> :*/}
+        <div className="text-center">
+            <button className="btn btn-warning" onClick={questionHandler}>Questions</button>
+        </div>
 
         <div className="contact-left-letters text-center">
             <div className="contact-info-holder">
@@ -216,7 +224,7 @@ const AdminPage = () => {
 
             <div className="form-group">
                 <label >Actual * {state.lettersEmail}</label>
-                <input type="checkbox" maxLength="50"  className="form-control" placeholder="actual" name="actual" />
+                <input type="checkbox" maxLength="50" className="form-control" placeholder="actual" name="actual" />
                 <span id="email" ></span>
             </div>
 

@@ -27,9 +27,12 @@ import Home from './Pages/Home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import HeaderLogo from './components/Header/HeaderLogo';
+import AdminPageQuestion from './Pages/AdminPage/AdminPageQuestions';
+import ForumPage from './Pages/ForumPage/ForumPage';
+import Comments from './Pages/Comments/Comments';
 
 const App = () => {
-
+    const role = getCookie("role");
     const [state, setState] = useState({});
     const [state1, setState1] = useState({});
     const [{ fetchData, user }, dispatch] = useStateValue();
@@ -73,6 +76,7 @@ const App = () => {
         }
         getData();
         checkingCookieUser();
+        console.log(user);
     }, []);
 
     // Adding user object to the context api store and his credentials in the cookies.
@@ -87,6 +91,7 @@ const App = () => {
             token: token,
             email: email,
             expiration: expiration,
+            role: role,
         }
 
         let userToAdd = {
@@ -125,6 +130,21 @@ const App = () => {
                             <Login />
                         </Route>
 
+                        <Route exact path="/adminpage/questions">
+                            {role === "Admin" ?
+                                <AdminPageQuestion />
+                                : <Home />}
+                        </Route>
+
+                        <Route exact path="/forumpage">
+                            <ForumPage />
+                        </Route>
+
+                        <Route exact path="/comments/:id?">
+                            <Comments />
+                        </Route>
+                        
+                        
                         <Route exact path="/authO/logout">
                             <Logout />
                         </Route>

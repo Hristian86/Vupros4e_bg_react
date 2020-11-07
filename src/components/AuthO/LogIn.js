@@ -66,10 +66,11 @@ const Login = (props) => {
 
                 if (user.email && user.token) {
 
-
                     // Adding user to the store
                     addUser(user);
-
+                    if (user?.role[0] !== undefined) {
+                        setCookie("role", user.role[0], 5);
+                    }
                     // Setting cookie user
                     user.user ? setCookieUser(user.user) :
                         setCookieUser(user.email);

@@ -4,6 +4,7 @@ import setCookie from '../Cookies/SetCookie';
 import { upPage } from '../UpPage/Uppage';
 import { REMOVE_USER } from '../ContextApi/Types';
 import { useHistory } from 'react-router';
+import getCookie from '../Cookies/GetCookie';
 
 const Avatar = ({ message }) => {
     const [store, dispatch] = useStateValue();
@@ -16,6 +17,9 @@ const Avatar = ({ message }) => {
         setCookie("token", null, -1);
         setCookie("user_name", null, -1);
         setCookie("cheked", null, -1);
+        setCookie("expiration", null, -1);
+        setCookie("XSRF-TOKEN", null, -1);
+        setCookie("role", null, -1);
         dispatch({
             type: REMOVE_USER,
             user: {
@@ -26,7 +30,13 @@ const Avatar = ({ message }) => {
 
     const adminHandler = () => {
         upPage();
-        history.push("/adminpage");
+        const role = getCookie("role");
+        console.log(role)
+        if (role == "Admin") {
+            history.push("/adminpage");
+        } else {
+            // To Do management
+        }
     }
 
     return <div>

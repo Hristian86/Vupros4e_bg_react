@@ -3,13 +3,13 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\Allert",
-    "\\src\\components\\AuthO",
+    "\\src\\components\\ActualQuestion",
+    "\\src\\components\\ContextApi",
     "\\src\\components\\CountDown",
-    "\\src\\components\\Header",
     "\\src\\components\\Question",
     "\\src\\Pages",
-    "\\src\\Pages\\AdminPage"
+    "\\src\\Pages\\AdminPage",
+    "\\src\\Pages\\Home"
   ],
   "SelectedNode": "\\src\\components\\Header\\HeaderLinks.js",
   "PreviewInSolutionExplorer": false

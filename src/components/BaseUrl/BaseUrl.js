@@ -7,7 +7,7 @@ const url = (parametar) => {
     const aspDotNetCore = "https://localhost:44318/"
 
     // Hosting url for prod
-    const herokuDotNet = "https://amazion.herokuapp.com/";
+    const herokuDotNet = "https://vupros4e-bg.herokuapp.com/";
 
     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
         // dev code

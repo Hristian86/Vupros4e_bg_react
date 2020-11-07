@@ -224,7 +224,7 @@ const AdminPage = () => {
 
             <div className="form-group">
                 <label >Actual * {state.lettersEmail}</label>
-                <input type="checkbox" maxLength="50" className="form-control" placeholder="actual" name="actual" />
+                <input type="text" maxLength="50" className="form-control" placeholder="actual" name="actual" />
                 <span id="email" ></span>
             </div>
 

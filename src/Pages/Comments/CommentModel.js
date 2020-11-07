@@ -9,7 +9,7 @@ const CommentModel = ({ content, title, createdOn, userName }) => {
                     <h1 className="mt-0">{title}</h1>
                     {content}
                     <br />
-                    <i className="fa fa-calendar pt-1" aria-hidden="true"></i> {createdOn}
+                    <i className="fa fa-calendar pt-1" aria-hidden="true"></i> {new Date(createdOn).toUTCString()}
             </div>
 
             <div className="">

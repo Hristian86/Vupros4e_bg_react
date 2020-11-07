@@ -2,6 +2,7 @@ import React from 'react';
 import './CurrentQuestion.css';
 import getCookie from '../Cookies/GetCookie';
 import { useHistory } from 'react-router';
+import FetchData from '../AuthListener/FetchData';
 
 const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount }) => {
 
@@ -10,6 +11,22 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
 
     const commentHandler = () => {
         history.push(`/comments/${id}`);
+    }
+
+    const deleteHandle = async () => {
+        const payload = {
+            id: Number(id)
+        };
+
+        var deleteQuestion = prompt("Delete this question", "yes");
+
+        if (deleteQuestion === "yes") {
+            const responce = FetchData("api/deletequestion", payload, "POST");
+        }
+    }
+
+    const updateHandle = () => {
+        const responce = FetchData(`api/deletequestion?id=${Number(id)}`, null, "GET");
     }
 
     return <div className="media w-100 mb-3 bg-white">
@@ -24,11 +41,11 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
 
                 <div>
                     {role === "Admin"
-                        ? <button className="btn btn-danger mt-5">Delete</button>
+                        ? <button onClick={deleteHandle} className="btn btn-danger mt-5">Delete</button>
                         : null}
 
                     {role === "Admin"
-                        ? <button className="mt-5 btn btn-warning ml-3">Update</button>
+                        ? <button onClick={updateHandle} className="mt-5 btn btn-warning ml-3">Update</button>
                         : null}
                 </div>
 

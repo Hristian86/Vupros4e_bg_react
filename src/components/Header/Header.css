@@ -27,12 +27,15 @@
     margin: auto;
 }
 
+/*.Sign__in{
+    font-size: 10px;
+}*/
 .header__container {
     display: flex;
     max-width: fit-content;
     padding: 10px;
     border: 1px solid lightgray;
-    border-radius: 999px!important;
+    border-radius: 999px !important;
 }
 
 .search__input {

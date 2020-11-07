@@ -21,8 +21,11 @@ const CountDown = ({ date }) => {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d :" + hours + "h :"
-            + minutes + "m :" + seconds + "s ";
+        let demoData = document.getElementById("demo");
+        if (demoData !== undefined && demoData !== null && demoData.innerHTML !== null) {
+            demoData.innerHTML = days + "d :" + hours + "h :"
+                + minutes + "m :" + seconds + "s ";
+        }
 
         // If the count down is over, write some text 
         if (distance < 0) {
@@ -31,7 +34,7 @@ const CountDown = ({ date }) => {
         }
     }, 1000);
 
-    return <text id="demo"></text>
+    return <text className="text-primary" id="demo"></text>
 }
 
 export default CountDown;

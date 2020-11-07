@@ -54,7 +54,7 @@ const App = () => {
         dispatch({
             type: GET_ITEMS,
             fetcheData: {
-                items: data.categories
+                items: data.question
             },
         });
     }
@@ -63,7 +63,7 @@ const App = () => {
     
     useEffect(() => {
         const getData = async () => {
-            const result = await dataListener("api/categoriesApi");
+            const result = await dataListener("api/questionapi");
             if (result) {
                 const res = JSON.parse(result.geoLocation);
                 console.log(res);

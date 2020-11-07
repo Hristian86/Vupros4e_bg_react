@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useState } from 'react';
 import Validate, { validateEmail } from '../../components/Validate/Validate';
 import './AdminPage.css';
@@ -28,6 +28,8 @@ const AdminPage = () => {
             imageurl: e.target.imageurl.value,
             content: e.target.content.value,
             description: e.target.content.value,
+            enddate: e.target.date.value,
+            isActual: e.target.actual.value
         }
 
         //validations for the inputs
@@ -37,7 +39,7 @@ const AdminPage = () => {
             if (true) {
                 const result = "email send";
                 //await SendEmail(email, subject, name, content);
-
+                
                 if (await result === "email send") {
 
                     const isCreated = await FetchData("api/question", payload, "POST");
@@ -185,8 +187,10 @@ const AdminPage = () => {
             </div>
 
             <div className="form-group">
-                <label >CategoryId * {state.lettersName}</label>
-                <input onChange={nameHandler} type="text" maxLength="50" minLength="1" className="form-control" placeholder="name" name="categoryid" />
+                <label >Enddate * {state.lettersName}</label>
+                <div className="form-group">
+                    <input className="form-control" placeholder="Дата на касовата бележка *" name="date" type="date" />
+                </div>
                 <span id="name" ></span>
             </div>
 
@@ -211,8 +215,8 @@ const AdminPage = () => {
             </div>
 
             <div className="form-group">
-                <label >Price * {state.lettersEmail}</label>
-                <input onChange={emailHandler} type="text" maxLength="50" minLength="1" className="form-control" placeholder="email" name="price" />
+                <label >Actual * {state.lettersEmail}</label>
+                <input type="checkbox" maxLength="50"  className="form-control" placeholder="actual" name="actual" />
                 <span id="email" ></span>
             </div>
 

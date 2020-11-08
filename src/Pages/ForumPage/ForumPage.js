@@ -14,8 +14,8 @@ const ForumPage = () => {
                         
                         <CurrentQuestion
                             id={data?.id}
-                            negativeVotes={data?.positiveVotes}
-                            positiveVotes={data?.negativeVotes}
+                            negativeVotes={data?.negativeVotes}
+                            positiveVotes={data?.positiveVotes}
                             title={data?.title ? data.title : null}
                             votesCount={data.votesCount}
                             commentsCount={data?.commentsCount}

@@ -114,7 +114,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
                                 className="fa fa-thumbs-up hover-button-type"></i>
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
-                            {negativeVotes}
+                            {positiveVotes}
                     </div>
                         <div className="mr-1">
                             <i data-toggle="tooltip"
@@ -125,7 +125,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
                                 className="fa fa-thumbs-down hover-button-type"></i>
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
-                           {positiveVotes}
+                           {negativeVotes}
                         </div>
                     </div>
                 </div>

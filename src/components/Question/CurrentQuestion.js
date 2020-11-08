@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './CurrentQuestion.css';
 import getCookie from '../Cookies/GetCookie';
 import { useHistory } from 'react-router';
 import FetchData from '../AuthListener/FetchData';
 
-const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount, votesCount }) => {
+const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount, votesCount, negativeVotes, positiveVotes }) => {
 
     const role = getCookie("role");
     const history = useHistory();
@@ -29,6 +29,34 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
         const responce = FetchData(`api/deletequestion?id=${Number(id)}`, null, "GET");
     }
 
+    const downVote = async () => {
+        console.log("down");
+        const payload = {
+            questionId: id,
+            isUpVote: false,
+        }
+        const result = await FetchData("api/votes", payload, "POST");
+        if (await !result?.error && await !result?.errors) {
+            // Make alert result
+            console.log("Success");
+            window.location.reload(false)
+        }
+    }
+
+    const upVote = async () => {
+        console.log("up");
+        const payload = {
+            questionId: id,
+            isUpVote: true,
+        }
+        const result = await FetchData("api/votes", payload, "POST");
+        if (await !result?.error && await !result?.errors) {
+            // Make alert result
+            console.log("Success");
+            window.location.reload(false)
+        }
+    }
+
     return <div className="media w-100 mb-3 bg-white">
         <div className="media-body">
 
@@ -45,7 +73,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
                         : null}
 
                     {role === "Admin"
-                        ? <button onClick={updateHandle} className="mt-5 btn btn-warning ml-3">Update</button>
+                        ? <button onClick={updateHandle} className="mt-5 btn btn-warning ml-3">Change the actual question</button>
                         : null}
                 </div>
 
@@ -77,26 +105,28 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
 
                     <div className="d-flex justify-content-end vote-container">
                         <span className="mr-3 text-danger" id="errorField"></span>
-                        <div className="mr-3">
+                        <div className="mr-1">
                             <i data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Like"
-                                onClick="upVote(@Model.Id)"
+                                onClick={upVote}
                                 id="upVoteIcont"
-                                className="fa fa-thumbs-up @upVote hover-button-type"></i>
+                                className="fa fa-thumbs-up hover-button-type"></i>
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
-                            {votesCount}
+                            {negativeVotes}
                     </div>
-                        <div className="">
+                        <div className="mr-1">
                             <i data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Un like"
                                 id="downVoteIcont"
-                                onClick="downVote(@Model.Id)"
-                                className="fa fa-thumbs-down @downVote hover-button-type"></i>
+                                onClick={downVote}
+                                className="fa fa-thumbs-down hover-button-type"></i>
                         </div>
-
+                        <div id="votesCount" className="mr-4 text-right">
+                           {positiveVotes}
+                        </div>
                     </div>
                 </div>
 

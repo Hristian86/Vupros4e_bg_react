@@ -3,13 +3,13 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\Allert",
-    "\\src\\components\\AuthListener",
-    "\\src\\components\\Header",
+    "\\src\\components\\ActualQuestion",
+    "\\src\\components\\Question",
     "\\src\\Pages",
     "\\src\\Pages\\AdminPage",
     "\\src\\Pages\\Comments",
-    "\\src\\Pages\\ForumPage"
+    "\\src\\Pages\\ForumPage",
+    "\\src\\Pages\\Home"
   ],
   "SelectedNode": "\\src\\components\\Question\\CurrentQuestion.js",
   "PreviewInSolutionExplorer": false

@@ -63,6 +63,8 @@ const ActualQeustion = () => {
                     </div> : null}
 
                     <CurrentQuestion
+                        negativeVotes={data?.negativeVotes}
+                        positiveVotes={data?.positiveVotes}
                         commentsCount={data?.commentsCount}
                         votesCount={data.votesCount}
                         actual={data?.isActual}

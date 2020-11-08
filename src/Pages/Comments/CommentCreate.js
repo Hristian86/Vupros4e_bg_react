@@ -26,6 +26,7 @@ const CommentCreate = ({ id, title }) => {
                 }
             } else {
                 alert.show(<AlertProductComponent message={"Success"} />);
+                window.location.reload(false)
             }
         } catch (e) {
             alert.show(<AlertProductComponent message={"Unauthorized"} />);
@@ -53,7 +54,7 @@ const CommentCreate = ({ id, title }) => {
             <span asp-validation-for="Content" className="text-danger"></span>
         </div>
 
-        <input className="btn btn-outline-primary mt-3" type="submit" name="submit" value="Add post" />
+        <input className="btn btn-outline-primary mt-3" type="submit" name="submit" value="Add Comment" />
 
     </form>
 }

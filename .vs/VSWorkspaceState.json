@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\ActualQuestion",
-    "\\src\\components\\ContextApi",
-    "\\src\\components\\CountDown",
-    "\\src\\components\\Question",
+    "\\src\\components\\Allert",
+    "\\src\\components\\AuthListener",
+    "\\src\\components\\Header",
     "\\src\\Pages",
     "\\src\\Pages\\AdminPage",
-    "\\src\\Pages\\Home"
+    "\\src\\Pages\\Comments",
+    "\\src\\Pages\\ForumPage"
   ],
-  "SelectedNode": "\\src\\components\\Header\\HeaderLinks.js",
+  "SelectedNode": "\\src\\components\\Question\\CurrentQuestion.js",
   "PreviewInSolutionExplorer": false
 }

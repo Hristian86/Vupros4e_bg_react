@@ -32,11 +32,8 @@ const ActualQeustion = () => {
             currData = fetchData[0]?.questions.filter(data => {
                 const created = new Date(data.createdOn.toString());
                 const endDate = new Date(data.endDate.toString());
-                //if (created.getDate() < endDate.getDate()) {
-                //    display.push(data);
-                //}
 
-                if (data.isActual === "on") {
+                if (data.isActual === "on" && created.getDate() < endDate.getDate()) {
                     return data;
                 }
             });
@@ -52,9 +49,7 @@ const ActualQeustion = () => {
     return <div className="Home">
 
         <h2 className="text-center pt-3 pb-3">Aktualen vupros</h2>
-        <button onClick={showData} >click</button>
-
-
+        <button onClick={showData} >Test context api store</button>
 
         {fetchData[0] === undefined ? <Loader /> :
 
@@ -69,6 +64,7 @@ const ActualQeustion = () => {
 
                     <CurrentQuestion
                         commentsCount={data?.commentsCount}
+                        votesCount={data.votesCount}
                         actual={data?.isActual}
                         id={data?.id}
                         title={data?.title ? data.title : null}

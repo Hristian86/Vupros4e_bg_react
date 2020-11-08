@@ -52,7 +52,7 @@ const Register = () => {
 
                     const result = await RegAuth(payload);
                     const user = result;
-
+                    console.log(result);
                     if (result === "User created") {
                         error.innerHTML = "Account created suceesfully";
 
@@ -60,7 +60,7 @@ const Register = () => {
                             history.push("/authO/login");
                         }, 700);
                     }else if (result.error) {
-                        error.innerHTML = "This email is already taken";
+                        error.innerHTML = result.error;
                         setState({
                             buttonPushed: false
                         });

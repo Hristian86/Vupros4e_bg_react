@@ -67,7 +67,7 @@ const App = () => {
     useEffect(() => {
         const getData = async () => {
             const result = await dataListener("api/questionapi");
-            if (result) {
+            if (result && !result.error && !result.errors) {
                 const res = JSON.parse(result.geoLocation);
                 console.log(res);
                 fetchDataFromApi(result);

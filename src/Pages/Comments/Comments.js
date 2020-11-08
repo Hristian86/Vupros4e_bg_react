@@ -1,35 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { useStateValue } from '../../components/ContextApi/StateProvider';
+import { useParams, useHistory } from 'react-router';
 import CommentModel from './CommentModel';
 import CommentCreate from './CommentCreate';
+import FetchData from '../../components/AuthListener/FetchData';
+import CommentsPages from './CommentsPages';
 
 const Comments = () => {
+    const history = useHistory();
     const { id } = useParams();
-    const [{ fetchData }, dispatch] = useStateValue();
+    let currentPage = 1;
     const [state, setState] = useState({
-        display: null
+        display: null,
     });
-    let display = [];
 
-
-    useEffect(() => {
-        if (fetchData[0]?.questions !== undefined) {
-            let displays = fetchData[0]?.questions.filter(data => {
-                if (data.id == id) {
-                    console.log(data.id == id);
-                    setState({
-                        display: data
-                    });
-                    return data
-                }
+    const getData = async () => {
+        const result = FetchData(`api/comment?id=${Number(id)}&page=${currentPage}`, null, "GET");
+        if (await result) {
+            console.log(await result);
+            setState({
+                display: await result,
             });
         }
-    }, [fetchData]);
+
+        //if (await result === undefined) {
+        //    history.push("/notfoundpage");
+        //}
+    }
+
+    useEffect(() => {
+        // fetch
+        getData();
+    }, []);
+
+    const backPage = () => {
+        currentPage -= 1;
+        getData();
+    }
+
+    const nextPage = () => {
+        currentPage += 1;
+        getData();
+    }
 
     return <div>
 
-        {state?.display !== undefined
+        <span id="comentsErrors"></span>
+
+        {state?.display?.comments
             ? state?.display?.comments.map((data, index) => (
                 <div key={index}>
                     <CommentModel
@@ -41,6 +58,10 @@ const Comments = () => {
                 </div>
             ))
             : null}
+
+        <div className="container">
+            <CommentsPages nextPage={nextPage} backPage={backPage} />
+        </div>
 
         <CommentCreate
             id={id}

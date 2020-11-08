@@ -19,7 +19,7 @@ const LogInHandler = async (payload) => {
         }
 
     } catch (e) {
-        console.log(e);
+        return e;
     }
 }
 

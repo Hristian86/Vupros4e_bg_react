@@ -4,7 +4,7 @@ import getCookie from '../Cookies/GetCookie';
 import { useHistory } from 'react-router';
 import FetchData from '../AuthListener/FetchData';
 
-const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount }) => {
+const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount, votesCount }) => {
 
     const role = getCookie("role");
     const history = useHistory();
@@ -86,7 +86,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
                                 className="fa fa-thumbs-up @upVote hover-button-type"></i>
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
-                            @Model.VotesCount
+                            {votesCount}
                     </div>
                         <div className="">
                             <i data-toggle="tooltip"

@@ -4,7 +4,7 @@ import style from './style.module.css';
 
 const NotFound = () => {
 
-    return <div classNameName={style.notFoundPage}>
+    return <div className="" >
 
 
         <div className="fh5co-page-title">

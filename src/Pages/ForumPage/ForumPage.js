@@ -15,6 +15,7 @@ const ForumPage = () => {
                         <CurrentQuestion
                             id={data?.id}
                             title={data?.title ? data.title : null}
+                            votesCount={data.votesCount}
                             commentsCount={data?.commentsCount}
                             actual={data?.isActual}
 

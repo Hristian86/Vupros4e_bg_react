@@ -8,7 +8,7 @@ import CommentsPages from './CommentsPages';
 const Comments = () => {
     const history = useHistory();
     const { id } = useParams();
-    let currentPage = 1;
+    const [currentPage, setCurrentPage] = useState(1);
     const [state, setState] = useState({
         display: null,
     });
@@ -33,12 +33,34 @@ const Comments = () => {
     }, []);
 
     const backPage = () => {
-        currentPage -= 1;
-        getData();
+        //console.log(state?.display?.commentsCounet);
+        //console.log(state?.display?.commetsPerPage);
+        if (currentPage <= 1) {
+            // forbid back
+        } else {
+            let backPage = currentPage;
+            setCurrentPage(backPage -= 1);
+            getData();
+        }
     }
 
     const nextPage = () => {
-        currentPage += 1;
+        if (currentPage >= state?.display?.commetsPerPage) {
+
+        } else {
+            let nextPage = currentPage;
+            setCurrentPage(nextPage += 1);
+            getData();
+        }
+
+    }
+
+    const SetPage = (number) => {
+        setCurrentPage(number);
+        getData();
+    }
+
+    if (state.display === null) {
         getData();
     }
 
@@ -60,10 +82,17 @@ const Comments = () => {
             : null}
 
         <div className="container">
-            <CommentsPages nextPage={nextPage} backPage={backPage} />
+            <CommentsPages
+                currentPageNavigation={currentPage}
+                commentsPerPage={state?.display?.commetsPerPage}
+                nextPage={nextPage}
+                backPage={backPage}
+                setCurrentPage={SetPage}
+            />
         </div>
 
         <CommentCreate
+            setState={setState}
             id={id}
         />
 

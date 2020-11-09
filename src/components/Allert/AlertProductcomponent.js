@@ -10,7 +10,7 @@ const AlertProductComponent = ({ vote, message }) => {
             
             <small></small>
             {/*<img className="alert__image" src={image} />*/}
-            <h5 className="text-success">{message}</h5>
+            <h6 className="text-success">{message}</h6>
         </div>
 
     </div>

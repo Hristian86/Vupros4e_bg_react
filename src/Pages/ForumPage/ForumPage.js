@@ -1,36 +1,57 @@
-import React from 'react';
-import { useStateValue } from '../../components/ContextApi/StateProvider';
+import React, { useEffect } from 'react';
 import CurrentQuestion from '../../components/Question/CurrentQuestion';
+import FetchData from '../../components/AuthListener/FetchData';
+import { useState } from 'react';
 
 const ForumPage = () => {
-    const [{ fetchData }, dispatch] = useStateValue();
+    const [apiData, setApiData] = useState({});
+
+    const getData = async () => {
+        const result = await FetchData("api/questionapi", null, "GET");
+        console.log("Hereeeee");
+        //console.log(result);
+        if (result && !result.error && !result.errors) {
+            const res = JSON.parse(result.geoLocation);
+            //console.log(res);
+            setApiData({
+                questions: result.question.questions
+            })
+            //clearInterval(interval);
+            console.log(apiData.questions);
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
 
     return <div className="container-fluid bg-light">
 
         <div className="container-fluid" >
-                {fetchData[0]?.questions.map((data, index) => (
-                    <div className="">
-                        
-                        
-                        <CurrentQuestion
-                            id={data?.id}
-                            negativeVotes={data?.negativeVotes}
-                            positiveVotes={data?.positiveVotes}
-                            title={data?.title ? data.title : null}
-                            votesCount={data.votesCount}
-                            commentsCount={data?.commentsCount}
-                            actual={data?.isActual}
+            {apiData?.questions !== undefined ? apiData?.questions?.map((data, index) => (
+                <div key={index} className="">
 
-                            image={data?.imageUrl ? data.imageUrl : null}
-                            userName={"go6o " + index ? index : null + 1}
-                            createdOn={new Date(data?.createdOn).toUTCString() ? new Date(data?.createdOn).toUTCString() : null}
-                            question={data?.description ? data?.description : null}
-                            
-                        />
+                    <CurrentQuestion
+                        title={data?.title}
+                        getData={getData}
+                        id={data?.id}
+                        negativeVotes={data?.negativeVotes}
+                        positiveVotes={data?.positiveVotes}
+                        title={data?.title ? data.title : null}
+                        votesCount={data.votesCount}
+                        commentsCount={data?.commentsCount}
+                        actual={data?.isActual}
+
+                        image={data?.imageUrl ? data.imageUrl : null}
+                        userName={"go6o " + index ? index : null + 1}
+                        createdOn={new Date(data?.createdOn).toUTCString() ? new Date(data?.createdOn).toUTCString() : null}
+                        question={data?.description ? data?.description : null}
+
+                    />
 
 
-                    </div>
-                ))}
+                </div>
+            )) : null}
 
         </div>
     </div>

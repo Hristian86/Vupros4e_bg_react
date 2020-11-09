@@ -47,7 +47,9 @@ const FetchData = async (apiController, payload, method) => {
                     return res.json()
                 } else if (res.status >= 500) {
                     throw new Error("Server error")
-                }
+                } else if (res.status == 400) {
+                    throw new Error("Invalid data")
+                } 
             })
             .catch(err => {
                 const error = {

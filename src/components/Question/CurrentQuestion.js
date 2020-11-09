@@ -3,11 +3,14 @@ import './CurrentQuestion.css';
 import getCookie from '../Cookies/GetCookie';
 import { useHistory } from 'react-router';
 import FetchData from '../AuthListener/FetchData';
+import { useAlert } from 'react-alert';
+import AlertProductComponent from '../Allert/AlertProductcomponent';
 
-const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, commentsCount, votesCount, negativeVotes, positiveVotes }) => {
+const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actual, commentsCount, votesCount, negativeVotes, positiveVotes, getData }) => {
 
     const role = getCookie("role");
     const history = useHistory();
+    const alert = useAlert();
 
     const commentHandler = () => {
         history.push(`/comments/${id}`);
@@ -31,29 +34,39 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
 
     const downVote = async () => {
         console.log("down");
-        const payload = {
-            questionId: id,
-            isUpVote: false,
-        }
-        const result = await FetchData("api/votes", payload, "POST");
-        if (await !result?.error && await !result?.errors) {
-            // Make alert result
-            console.log("Success");
-            window.location.reload(false)
+        const loggedUser = getCookie("user");
+        if (loggedUser) {
+            const payload = {
+                questionId: id,
+                isUpVote: false,
+            }
+            const result = await FetchData("api/votes", payload, "POST");
+            if (await !result?.error && await !result?.errors) {
+                // Make alert result
+                getData();
+                alert.show(<AlertProductComponent message={`You have voted for '${title}'`} />);
+            }
+        } else {
+            alert.show(<AlertProductComponent message={`You must be logged to vote`} />);
         }
     }
 
     const upVote = async () => {
         console.log("up");
-        const payload = {
-            questionId: id,
-            isUpVote: true,
-        }
-        const result = await FetchData("api/votes", payload, "POST");
-        if (await !result?.error && await !result?.errors) {
-            // Make alert result
-            console.log("Success");
-            window.location.reload(false)
+        const loggedUser = getCookie("user");
+        if (loggedUser) {
+            const payload = {
+                questionId: id,
+                isUpVote: true,
+            }
+            const result = await FetchData("api/votes", payload, "POST");
+            if (await !result?.error && await !result?.errors) {
+                // Make alert result
+                getData();
+                alert.show(<AlertProductComponent message={`You have voted for '${title}'`} />);
+            }
+        } else {
+            alert.show(<AlertProductComponent message={`You must be logged to vote`} />);
         }
     }
 
@@ -64,6 +77,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
 
             <div className="row">
                 <div className="col-4">
+                    <h2>{title}</h2>
                     <img className="mr-3" className="question__image" src={image} />
                 </div>
 
@@ -115,7 +129,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
                             {positiveVotes}
-                    </div>
+                        </div>
                         <div className="mr-1">
                             <i data-toggle="tooltip"
                                 data-placement="bottom"
@@ -125,7 +139,7 @@ const CurrentQuestion = ({ id, image, createdOn, userName, question, actual, com
                                 className="fa fa-thumbs-down hover-button-type"></i>
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
-                           {negativeVotes}
+                            {negativeVotes}
                         </div>
                     </div>
                 </div>

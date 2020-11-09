@@ -69,14 +69,14 @@ const App = () => {
             const result = await dataListener("api/questionapi");
             if (result && !result.error && !result.errors) {
                 const res = JSON.parse(result.geoLocation);
-                console.log(res);
+                //console.log(res);
                 fetchDataFromApi(result);
                 //clearInterval(interval);
             }
         }
         getData();
         checkingCookieUser();
-        console.log(user);
+        //console.log(user);
     }, []);
 
     // Adding user object to the context api store and his credentials in the cookies.

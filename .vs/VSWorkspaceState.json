@@ -3,7 +3,7 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\ActualQuestion",
+    "\\src\\components\\BaseUrl",
     "\\src\\components\\Question",
     "\\src\\Pages",
     "\\src\\Pages\\AdminPage",

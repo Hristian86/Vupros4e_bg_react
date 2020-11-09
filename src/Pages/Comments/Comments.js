@@ -13,24 +13,26 @@ const Comments = () => {
         display: null,
     });
 
-    const getData = async () => {
-        const result = FetchData(`api/comment?id=${Number(id)}&page=${currentPage}`, null, "GET");
-        if (await result) {
-            console.log(await result);
-            setState({
-                display: await result,
-            });
-        }
+    const getData = async (pageNum) => {
+        setTimeout(async () => {
+            const result = FetchData(`api/comment?id=${Number(id)}&page=${Number(pageNum)}`, null, "GET");
+            if (await result) {
+                console.log(await result);
+                setState({
+                    display: await result,
+                });
+            }
+        }, 200);
 
         //if (await result === undefined) {
         //    history.push("/notfoundpage");
         //}
     }
 
-    useEffect(() => {
-        // fetch
-        getData();
-    }, []);
+    //useEffect(() => {
+    //    // fetch
+    //    getData();
+    //}, []);
 
     const backPage = () => {
         //console.log(state?.display?.commentsCounet);
@@ -40,7 +42,7 @@ const Comments = () => {
         } else {
             let backPage = currentPage;
             setCurrentPage(backPage -= 1);
-            getData();
+            getData(backPage);
         }
     }
 
@@ -49,19 +51,20 @@ const Comments = () => {
 
         } else {
             let nextPage = currentPage;
-            setCurrentPage(nextPage += 1);
-            getData();
+            nextPage = nextPage += 1
+            setCurrentPage(nextPage);
+            getData(nextPage);
         }
 
     }
 
     const SetPage = (number) => {
         setCurrentPage(number);
-        getData();
+        getData(number);
     }
 
     if (state.display === null) {
-        getData();
+        getData(1);
     }
 
     return <div>

@@ -12,19 +12,26 @@ const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, 
         <div>
             <div aria-label="Page navigation example">
                 <ul className="pagination">
-                    <li className="page-item hover__cursor"><span className="page-link " onClick={backPage} >Previous</span></li>
+                    <li className={currentPageNavigation <= 1
+                        ? "page-item disabled"
+                        : "page-item hover__cursor"
+                        }><span className="page-link " onClick={backPage} >Previous</span></li>
 
                     {Array(commentsPerPage)
                         .fill()
                         .map((_, index) => (
                             <CommentsPerPageComponent
+                                key={index}
                                 currentPageNavigation={currentPageNavigation}
                                 setCurrentPage={setCurrentPage}
                                 index={index + 1}
                             />
                         ))}
 
-                    <li className="page-item hover__cursor"><span className="page-link" onClick={nextPage} >Next</span></li>
+                    <li className={currentPageNavigation >= commentsPerPage
+                        ? "page-item disabled"
+                        : "page-item hover__cursor"
+                    }><span className="page-link" onClick={nextPage} >Next</span></li>
                 </ul>
             </div>
         </div>

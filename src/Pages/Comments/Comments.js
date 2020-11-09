@@ -4,6 +4,7 @@ import CommentModel from './CommentModel';
 import CommentCreate from './CommentCreate';
 import FetchData from '../../components/AuthListener/FetchData';
 import CommentsPages from './CommentsPages';
+import Loader from '../../components/Loader/Loader';
 
 const Comments = () => {
     const history = useHistory();
@@ -71,6 +72,8 @@ const Comments = () => {
 
         <span id="comentsErrors"></span>
 
+        {state?.display?.comments ? null : <div className="text-center"><Loader /></div>}
+
         {state?.display?.comments
             ? state?.display?.comments.map((data, index) => (
                 <div key={index}>
@@ -84,7 +87,7 @@ const Comments = () => {
             ))
             : null}
 
-        <div className="container">
+        {state?.display?.comments ? <div className="container">
             <CommentsPages
                 currentPageNavigation={currentPage}
                 commentsPerPage={state?.display?.commetsPerPage}
@@ -92,12 +95,12 @@ const Comments = () => {
                 backPage={backPage}
                 setCurrentPage={SetPage}
             />
-        </div>
+        </div> : null}
 
-        <CommentCreate
+        {state?.display?.comments ? <CommentCreate
             setState={setState}
             id={id}
-        />
+        /> : null}
 
     </div>
 }

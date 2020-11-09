@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import CurrentQuestion from '../../components/Question/CurrentQuestion';
 import FetchData from '../../components/AuthListener/FetchData';
 import { useState } from 'react';
+import Loader from '../../components/Loader/Loader';
 
 const ForumPage = () => {
     const [apiData, setApiData] = useState({});
@@ -51,7 +52,7 @@ const ForumPage = () => {
 
 
                 </div>
-            )) : null}
+            )) : <div className="text-center"><Loader /></div>}
 
         </div>
     </div>

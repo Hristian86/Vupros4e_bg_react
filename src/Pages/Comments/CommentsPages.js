@@ -18,6 +18,7 @@ const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, 
                         .fill()
                         .map((_, index) => (
                             <CommentsPerPageComponent
+                                currentPageNavigation={currentPageNavigation}
                                 setCurrentPage={setCurrentPage}
                                 index={index + 1}
                             />

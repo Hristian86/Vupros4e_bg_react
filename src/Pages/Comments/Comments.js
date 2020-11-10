@@ -12,6 +12,7 @@ const Comments = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [state, setState] = useState({
         display: null,
+        loaded: false,
     });
 
     const getData = async (pageNum) => {
@@ -21,6 +22,11 @@ const Comments = () => {
                 console.log(await result);
                 setState({
                     display: await result,
+                    loaded: true,
+                });
+            } else if (await result.error == "Not found") {
+                setState({
+                    loaded: true,
                 });
             }
         }, 200);
@@ -72,7 +78,7 @@ const Comments = () => {
 
         <span id="comentsErrors"></span>
 
-        {state?.display?.comments ? null : <div className="text-center"><Loader /></div>}
+        {state?.loaded ? null : <div className="text-center"><Loader /></div>}
 
         {state?.display?.comments
             ? state?.display?.comments.map((data, index) => (
@@ -85,7 +91,7 @@ const Comments = () => {
                     />
                 </div>
             ))
-            : null}
+            : null }
 
         {state?.display?.comments ? <div className="container">
             <CommentsPages

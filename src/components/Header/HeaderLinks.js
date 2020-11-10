@@ -71,7 +71,7 @@ const HeaderLinks = () => {
     }
 
 
-    return <div className="header2 pl-md-5 pr-md-5">
+    return <div className="header2 pl-md-5 pr-md-5 pb-1">
 
         <div className="nav-link">
 

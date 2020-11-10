@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\components",
-    "\\components\\BaseUrl"
+    "\\components\\BaseUrl",
+    "\\Pages",
+    "\\Pages\\Comments"
   ],
-  "SelectedNode": "\\components\\BaseUrl\\BaseUrl.js",
+  "SelectedNode": "\\Pages\\Comments\\Comments.js",
   "PreviewInSolutionExplorer": false
 }

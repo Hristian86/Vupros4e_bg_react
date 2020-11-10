@@ -97,10 +97,10 @@ const Comments = () => {
             />
         </div> : null}
 
-        {state?.display?.comments ? <CommentCreate
+        <CommentCreate
             setState={setState}
             id={id}
-        /> : null}
+        />
 
     </div>
 }

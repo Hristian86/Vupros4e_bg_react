@@ -5,9 +5,11 @@ import Loader from '../Loader/Loader';
 import Clock from '../CountDown/Clock';
 import CountDown from '../CountDown/CountDown';
 import CurrentQuestion from '../Question/CurrentQuestion';
+import FetchData from '../AuthListener/FetchData';
+import getCookie from '../Cookies/GetCookie';
 
 const ActualQeustion = () => {
-
+    const role = getCookie("role");
     const question = [];
     // Set date from database\
     const [{ fetchData }, dispatch] = useStateValue();
@@ -23,13 +25,26 @@ const ActualQeustion = () => {
         console.log(currData);
     }
 
-    // Date createdOn
-    useEffect(() => {
+    const getData = async () => {
+        const result = await FetchData("api/questionapi", null, "GET");
+        if (result && !result.error && !result.errors) {
+            const res = JSON.parse(result.geoLocation);
+            //console.log(res);
+            //setCurrData({
+            //    data: result.question
+            //})
+            //clearInterval(interval);
+            setData(result.question);
+        }
+    }
+
+    const setData = (data) => {
 
         let currData = [];
-        if (fetchData[0]?.questions !== undefined) {
+        currData = data;
+        if (currData?.questions !== undefined) {
 
-            currData = fetchData[0]?.questions.filter(data => {
+            currData = currData?.questions.filter(data => {
                 const created = new Date(data.createdOn.toString());
                 const endDate = new Date(data.endDate.toString());
 
@@ -42,27 +57,57 @@ const ActualQeustion = () => {
                 data: currData,
             })
         }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    //if (currData?.data[0] === undefined) {
+    //    getData();
+    //}
+
+    // Date createdOn
+    //useEffect(() => {
+
+    //    let currData = [];
+    //    if (currData?.questions !== undefined) {
+
+    //        currData = currData?.questions.filter(data => {
+    //            const created = new Date(data.createdOn.toString());
+    //            const endDate = new Date(data.endDate.toString());
+
+    //            if (data.isActual === "on" && created.getDate() < endDate.getDate()) {
+    //                return data;
+    //            }
+    //        });
+
+    //        setCurrData({
+    //            data: currData,
+    //        })
+    //    }
 
 
-    }, [fetchData]);
+    //}, [fetchData]);
     
     return <div className="Home">
 
         <h2 className="text-center pt-3 pb-3">Aktualen vupros</h2>
-        <button onClick={showData} >Test context api store</button>
+        {role === "Admin" ? <button onClick={showData} >Test context api store</button> : null}
 
-        {fetchData[0] === undefined ? <Loader /> :
+        {currData === undefined ? <Loader /> :
 
             currData?.data.map((data, index) => (
                 <div key={index} className="row container">
 
-                    {fetchData[0] !== undefined ? <div className="text-center m-auto timer__counter">
+                    {currData !== undefined ? <div className="text-center m-auto timer__counter">
                         Sega6no vreme: <Clock /> <br />
                         Ostava6to vreme: <CountDown date={data.endDate.toString()} /> <br />
                         Kraina data: {new Date(data.endDate.toString()).toDateString()}
                     </div> : null}
 
                     <CurrentQuestion
+                        getData={getData}
                         title={data?.title}
                         negativeVotes={data?.negativeVotes}
                         positiveVotes={data?.positiveVotes}

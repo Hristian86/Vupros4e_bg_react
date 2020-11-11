@@ -96,7 +96,7 @@ const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actu
                 </div>
 
                 <div className="text-right pr-sm-2 w-100">
-                    <button onClick={commentHandler} className="btn btn-primary">Comments</button>
+                    {/*<button onClick={commentHandler} className="btn btn-primary">Comments</button>*/}
                 </div>
             </div>
             <hr />

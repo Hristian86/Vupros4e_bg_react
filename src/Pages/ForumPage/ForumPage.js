@@ -3,9 +3,11 @@ import CurrentQuestion from '../../components/Question/CurrentQuestion';
 import FetchData from '../../components/AuthListener/FetchData';
 import { useState } from 'react';
 import Loader from '../../components/Loader/Loader';
+import Comments from '../Comments/Comments';
 
 const ForumPage = () => {
     const [apiData, setApiData] = useState({});
+    const [active, setActive] = useState({});
 
     const getData = async () => {
         const result = await FetchData("api/questionapi", null, "GET");
@@ -14,8 +16,17 @@ const ForumPage = () => {
         if (result && !result.error && !result.errors) {
             const res = JSON.parse(result.geoLocation);
             //console.log(res);
-            setApiData({
-                questions: result.question.questions
+            //setApiData({
+            //    questions: result.question.questions
+            //});
+            let active = result.question.questions.filter(data => {
+                if (data.isActual === "on") {
+                    return data;
+                }
+            })
+            console.log(active);
+            setActive({
+                active: active,
             })
             //clearInterval(interval);
             console.log(apiData.questions);
@@ -26,10 +37,15 @@ const ForumPage = () => {
         getData();
     }, []);
 
+    const ActiveComment = (dataApi) => {
+        
+    }
+
     return <div className="container-fluid bg-light">
 
         <div className="container-fluid" >
-            {apiData?.questions !== undefined ? apiData?.questions?.map((data, index) => (
+
+            {/*{apiData?.questions !== undefined ? apiData?.questions?.map((data, index) => (
                 <div key={index} className="">
 
                     <CurrentQuestion
@@ -52,7 +68,16 @@ const ForumPage = () => {
 
 
                 </div>
-            )) : <div className="text-center"><Loader /></div>}
+            )) : <div className="text-center"><Loader /></div>}*/}
+            
+            
+            {active?.active  ? 
+
+                <Comments
+                    ids={active?.active[0]?.id}
+                />
+
+                : null}
 
         </div>
     </div>

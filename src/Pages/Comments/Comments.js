@@ -6,9 +6,10 @@ import FetchData from '../../components/AuthListener/FetchData';
 import CommentsPages from './CommentsPages';
 import Loader from '../../components/Loader/Loader';
 
-const Comments = () => {
+const Comments = ({ ids }) => {
     const history = useHistory();
-    const { id } = useParams();
+    //const { id } = useParams();
+    const id = ids;
     const [currentPage, setCurrentPage] = useState(1);
     const [state, setState] = useState({
         display: null,
@@ -78,12 +79,12 @@ const Comments = () => {
 
         <span id="comentsErrors"></span>
 
-        {state?.loaded ? null : <div className="text-center"><Loader /></div>}
-
         <CommentCreate
             setState={setState}
             id={id}
         />
+
+        {state?.loaded ? null : <div className="text-center"><Loader /></div>}
 
         {state?.display?.comments
             ? state?.display?.comments.map((data, index) => (

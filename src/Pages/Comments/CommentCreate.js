@@ -7,11 +7,12 @@ import { useStateValue } from '../../components/ContextApi/StateProvider';
 import { GET_ITEMS } from '../../components/ContextApi/Types';
 import Loader from '../../components/Loader/Loader';
 import './CommentsCreate.css';
+import getCookie from '../../components/Cookies/GetCookie';
 
 const CommentCreate = ({ id, title, setState }) => {
     const [buttonPress, setButtonPress] = useState(false);
     const alert = useAlert();
-
+    const user = getCookie("user");
     const [{ fetchData }, dispatch] = useStateValue();
     const [formTitle, setFormTitle] = useState("");
     const [formContent, setFromContent] = useState("");
@@ -30,7 +31,7 @@ const CommentCreate = ({ id, title, setState }) => {
         question: []
     };
 
-    
+
 
     const commentHandler = async (e) => {
         const contents = document.getElementById("content");
@@ -79,10 +80,7 @@ const CommentCreate = ({ id, title, setState }) => {
 
     return <form onSubmit={commentHandler} className="container pl-2 pr-2">
 
-        <div>
-            <h2 className="mt-3 text-center">{title}</h2>
-        </div>
-
+        <label>{user}</label>
         <input type="hidden" />
 
         {/*<div>
@@ -92,20 +90,42 @@ const CommentCreate = ({ id, title, setState }) => {
         </div>*/}
 
         <div>
-            <label>Content</label>
+            {/*<label>Content</label>*/}
             <textarea id="textValidate" onChange={(e => setFromContent(e.target.value))} value={formContent} id="content" name="content" className="form-control"></textarea>
-            <span asp-validation-for="Content"  className="text-danger"></span>
+            <span asp-validation-for="Content" className="text-danger"></span>
         </div>
 
-        {buttonPress
-            ? <div className="loader__style mt-3"><Loader /></div>
-            : <input
-                className="btn btn-outline-primary mt-3"
-                type="submit"
-                name="submit"
-                value="Add Comment"
-            />}
+        <div className="row ">
 
+            <div className="text-left col-md-3 pt-4">
+                Komentar po temata
+            </div>
+            <div className="col-4">
+
+            </div>
+            <div className="col-5">
+                <div className="row">
+
+
+                    <div className="col-md-8 text-right">
+                        <i className="fa fa-comment pt-4 text-primary"></i>
+                    </div>
+
+                    <div className="col-md-4">
+                        
+                        {buttonPress
+                            ? <div className="loader__style mt-3 "><Loader /></div>
+                            : <input
+                                className="btn btn-outline-primary mt-3"
+                                type="submit"
+                                name="submit"
+                                value="Add Comment"
+                            />}
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </form>
 }
 

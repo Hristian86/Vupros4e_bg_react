@@ -80,6 +80,11 @@ const Comments = () => {
 
         {state?.loaded ? null : <div className="text-center"><Loader /></div>}
 
+        <CommentCreate
+            setState={setState}
+            id={id}
+        />
+
         {state?.display?.comments
             ? state?.display?.comments.map((data, index) => (
                 <div key={index}>
@@ -102,11 +107,6 @@ const Comments = () => {
                 setCurrentPage={SetPage}
             />
         </div> : null}
-
-        <CommentCreate
-            setState={setState}
-            id={id}
-        />
 
     </div>
 }

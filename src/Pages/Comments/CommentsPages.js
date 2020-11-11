@@ -17,7 +17,32 @@ const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, 
                         : "page-item hover__cursor"
                         }><span className="page-link " onClick={backPage} >Previous</span></li>
 
-                    {Array(commentsPerPage)
+                    {currentPageNavigation !== 1 ? 
+                        
+                        <CommentsPerPageComponent
+                        key={1}
+                        currentPageNavigation={currentPageNavigation}
+                        setCurrentPage={setCurrentPage}
+                        index={1}
+                    /> : null}
+
+                    <CommentsPerPageComponent
+                        key={currentPageNavigation}
+                        currentPageNavigation={currentPageNavigation}
+                        setCurrentPage={setCurrentPage}
+                        index={currentPageNavigation}
+                    />
+
+                    {currentPageNavigation !== commentsPerPage ?
+
+                        <CommentsPerPageComponent
+                            key={commentsPerPage}
+                            currentPageNavigation={currentPageNavigation}
+                            setCurrentPage={setCurrentPage}
+                            index={commentsPerPage}
+                        /> : null}
+
+                    {/*{Array(commentsPerPage)
                         .fill()
                         .map((_, index) => (
                             <CommentsPerPageComponent
@@ -26,7 +51,7 @@ const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, 
                                 setCurrentPage={setCurrentPage}
                                 index={index + 1}
                             />
-                        ))}
+                        ))}*/}
 
                     <li className={currentPageNavigation >= commentsPerPage
                         ? "page-item disabled"

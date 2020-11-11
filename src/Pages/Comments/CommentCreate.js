@@ -42,40 +42,47 @@ const CommentCreate = ({ id, title, setState }) => {
         // fetch here
         const title = e.target.title.value;
         const content = e.target.content.value;
-        const payload = {
-            questionid: Number(id),
-            title: title,
-            content: content,
-        }
-
-        try {
-            const result = await FetchData("api/comment", payload, "POST");
-            console.log(result);
-            if (result?.error || result?.errors) {
-                if (result?.error.message === "Failed to fetch") {
-                    alert.show(<AlertProductComponent message={"unauthorized"} />);
-                    setButtonPress(false);
-                } else {
-                    alert.show(<AlertProductComponent message={"Invalid data"} />);
-                    setButtonPress(false);
-                }
-            } else {
-                setFormTitle("");
-                setFromContent("");
-                alert.show(<AlertProductComponent message={"Successfully created comment"} />);
-                setButtonPress(false);
-
-                console.log(titles);
-
-                setState({
-                    display: null
-                });
-            }
-        } catch (e) {
-            alert.show(<AlertProductComponent message={`You have voted for '${title}'`} />);
+        if (content.length < 6) {
+            alert.show(<AlertProductComponent message={"Comment length must be at least 5 symbols"} />);
             setButtonPress(false);
-        }
+        } else if (!user) {
+            alert.show(<AlertProductComponent message={"You must login."} />);
+            setButtonPress(false);
+        } else {
 
+            const payload = {
+                questionid: Number(id),
+                title: title,
+                content: content,
+            }
+
+            try {
+                const result = await FetchData("api/comment", payload, "POST");
+                if (result?.error || result?.errors) {
+                    if (result?.error.message === "Failed to fetch") {
+                        alert.show(<AlertProductComponent message={"You must login."} />);
+                        setButtonPress(false);
+                    } else if (result?.error) {
+                        alert.show(<AlertProductComponent message={result?.error.toString()} />);
+                        setButtonPress(false);
+                    }
+                } else {
+                    setFormTitle("");
+                    setFromContent("");
+                    alert.show(<AlertProductComponent message={"Successfully created comment."} />);
+                    setButtonPress(false);
+
+                    console.log(titles);
+
+                    setState({
+                        display: null
+                    });
+                }
+            } catch (e) {
+                alert.show(<AlertProductComponent message={`You have voted for '${title}.'`} />);
+                setButtonPress(false);
+            }
+        }
     }
 
     return <form onSubmit={commentHandler} className="container pl-2 pr-2">
@@ -112,7 +119,7 @@ const CommentCreate = ({ id, title, setState }) => {
                     </div>
 
                     <div className="col-md-4">
-                        
+
                         {buttonPress
                             ? <div className="loader__style mt-3 "><Loader /></div>
                             : <input

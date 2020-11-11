@@ -50,7 +50,7 @@ const FetchData = async (apiController, payload, method) => {
                 } else if (res.status == 400) {
                     throw new Error("Invalid data")
                 } else if (res.status == 404) {
-                    throw new Error("Not found")
+                    throw new Error("Not found");
                 }
             })
             .catch(err => {

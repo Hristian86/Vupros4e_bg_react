@@ -3,7 +3,7 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\BaseUrl",
+    "\\src\\components\\AuthListener",
     "\\src\\components\\Question",
     "\\src\\Pages",
     "\\src\\Pages\\AdminPage",
@@ -11,6 +11,6 @@
     "\\src\\Pages\\ForumPage",
     "\\src\\Pages\\Home"
   ],
-  "SelectedNode": "\\src\\Pages\\Comments\\Comments.js",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

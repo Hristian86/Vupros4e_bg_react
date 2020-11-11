@@ -85,11 +85,11 @@ const CommentCreate = ({ id, title, setState }) => {
 
         <input type="hidden" />
 
-        <div>
+        {/*<div>
             <label>Title</label>
             <input name="title" id="title" onChange={(e => setFormTitle(e.target.value))} value={formTitle} className="form-control" />
             <span className="text-danger"></span>
-        </div>
+        </div>*/}
 
         <div>
             <label>Content</label>

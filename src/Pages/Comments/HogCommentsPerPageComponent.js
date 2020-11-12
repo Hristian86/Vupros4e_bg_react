@@ -5,29 +5,14 @@ const HogCommentsPerPageComponent = ({ currentPageNavigation, setCurrentPage, co
 
     return <div className="d-flex">
 
-
-        {currentPageNavigation > 6 ? <CommentsPerPageComponent
-            key={currentPageNavigation - 5}
-            currentPageNavigation={currentPageNavigation}
-            setCurrentPage={setCurrentPage}
-            index={currentPageNavigation - 5}
-        /> : null}
-
-        {currentPageNavigation > 5 ? <CommentsPerPageComponent
-            key={currentPageNavigation - 4}
-            currentPageNavigation={currentPageNavigation}
-            setCurrentPage={setCurrentPage}
-            index={currentPageNavigation - 4}
-        /> : null}
-
-        {currentPageNavigation > 4 ? <CommentsPerPageComponent
+        {commentsPerPage == currentPageNavigation ? <CommentsPerPageComponent
             key={currentPageNavigation - 3}
             currentPageNavigation={currentPageNavigation}
             setCurrentPage={setCurrentPage}
             index={currentPageNavigation - 3}
         /> : null}
 
-        {currentPageNavigation > 3 ? <CommentsPerPageComponent
+        {(commentsPerPage - 1) <= currentPageNavigation ? <CommentsPerPageComponent
             key={currentPageNavigation - 2}
             currentPageNavigation={currentPageNavigation}
             setCurrentPage={setCurrentPage}
@@ -57,37 +42,23 @@ const HogCommentsPerPageComponent = ({ currentPageNavigation, setCurrentPage, co
             index={currentPageNavigation + 1}
             /> : null}
 
-        {commentsPerPage > currentPageNavigation + 2
-            ? <CommentsPerPageComponent
+        {currentPageNavigation > 2
+            ? null
+            : <CommentsPerPageComponent
                 key={currentPageNavigation + 2}
                 currentPageNavigation={currentPageNavigation}
                 setCurrentPage={setCurrentPage}
                 index={currentPageNavigation + 2}
-            /> : null}
+            />}
 
-        {commentsPerPage > currentPageNavigation + 3
-            ? <CommentsPerPageComponent
+        {currentPageNavigation > 1
+            ? null
+            : <CommentsPerPageComponent
                 key={currentPageNavigation + 3}
                 currentPageNavigation={currentPageNavigation}
                 setCurrentPage={setCurrentPage}
                 index={currentPageNavigation + 3}
-            /> : null}
-
-        {commentsPerPage > currentPageNavigation + 4
-            ? <CommentsPerPageComponent
-                key={currentPageNavigation + 4}
-                currentPageNavigation={currentPageNavigation}
-                setCurrentPage={setCurrentPage}
-                index={currentPageNavigation + 4}
-            /> : null}
-
-        {commentsPerPage > currentPageNavigation + 5
-            ? <CommentsPerPageComponent
-                key={currentPageNavigation + 5}
-                currentPageNavigation={currentPageNavigation}
-                setCurrentPage={setCurrentPage}
-                index={currentPageNavigation + 5}
-            /> : null}
+            />}
 
     </div>
 

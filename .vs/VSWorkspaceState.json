@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\src",
     "\\src\\components",
     "\\src\\components\\AuthListener",
     "\\src\\components\\Question",
@@ -10,6 +11,6 @@
     "\\src\\Pages\\ForumPage",
     "\\src\\Pages\\Home"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\Pages\\Comments\\HogCommentsPerPageComponent.js",
   "PreviewInSolutionExplorer": false
 }

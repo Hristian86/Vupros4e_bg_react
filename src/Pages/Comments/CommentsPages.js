@@ -1,6 +1,7 @@
 import React from 'react';
 import './CommentsPages.css';
 import CommentsPerPageComponent from './CommentsPerPageComponent';
+import HogCommentsPerPageComponent from './HogCommentsPerPageComponent';
 
 const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, nextPage, backPage }) => {
 
@@ -26,7 +27,8 @@ const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, 
                         index={1}
                     /> : null}
 
-                    <CommentsPerPageComponent
+                    <HogCommentsPerPageComponent
+                        commentsPerPage={commentsPerPage}
                         key={currentPageNavigation}
                         currentPageNavigation={currentPageNavigation}
                         setCurrentPage={setCurrentPage}
@@ -41,17 +43,6 @@ const CommentsPages = ({currentPageNavigation, setCurrentPage, commentsPerPage, 
                             setCurrentPage={setCurrentPage}
                             index={commentsPerPage}
                         /> : null}
-
-                    {/*{Array(commentsPerPage)
-                        .fill()
-                        .map((_, index) => (
-                            <CommentsPerPageComponent
-                                key={index}
-                                currentPageNavigation={currentPageNavigation}
-                                setCurrentPage={setCurrentPage}
-                                index={index + 1}
-                            />
-                        ))}*/}
 
                     <li className={currentPageNavigation >= commentsPerPage
                         ? "page-item disabled"

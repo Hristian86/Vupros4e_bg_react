@@ -3,7 +3,12 @@
     align-items: center;
     object-fit: contain;
     width: 100%;
-    background-color: rgba(222,222,222, 03)!important;
+    /*background-color: rgba(222,222,222, 03)!important;*/
+    background-color: #47ba16 !important;
+}
+
+.header__logos {
+    background-color: #47ba16 !important;
 }
 
 .header__logo {

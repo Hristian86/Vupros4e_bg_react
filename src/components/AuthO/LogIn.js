@@ -106,6 +106,9 @@ const Login = (props) => {
 
                 } else if (user.error) {
                     error.innerHTML = user.error;
+                    setState({
+                        buttonPresed: false
+                    });
                 } else {
                     setState({
                         buttonPresed: false

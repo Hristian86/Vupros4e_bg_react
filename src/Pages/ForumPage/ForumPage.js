@@ -77,7 +77,10 @@ const ForumPage = () => {
                     ids={active?.active[0]?.id}
                 />
 
-                : null}
+                :
+                <div className="text-center">
+                    <Loader />
+                </div>}
 
         </div>
     </div>

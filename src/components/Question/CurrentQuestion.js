@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import './CurrentQuestion.css';
 import getCookie from '../Cookies/GetCookie';
 import { useHistory } from 'react-router';
@@ -76,10 +76,10 @@ const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actu
             <h3 id="time"></h3>
 
             <div className="row">
-                <div className="col-4">
+                {/*<div className="col-4">
                     <h2>{title}</h2>
                     <img className="mr-3" className="question__image" src={image} />
-                </div>
+                </div>*/}
 
                 <div>
                     {role === "Admin"
@@ -91,8 +91,8 @@ const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actu
                         : null}
                 </div>
 
-                <div className="col-9">
-                    <div>Question {question} </div>
+                <div className="mt-3 mb-3 text-center w-100">
+                    <div className="mt-3">Въпросът e: {question} </div>
                 </div>
 
                 <div className="text-right pr-sm-2 w-100">
@@ -100,7 +100,7 @@ const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actu
                 </div>
             </div>
             <hr />
-            <div className="row">
+            {/*<div className="row">
                 <div className="col-6">
                     <i className="fa fa-calendar" aria-hidden="true"></i> {createdOn}
                 </div>
@@ -109,10 +109,10 @@ const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actu
                     <i className="fa fa-comment"></i> {commentsCount}
                 </div>
             </div>
-            <hr />
+            <hr />*/}
             <div>
                 <div className="d-flex justify-content-between">
-                    {actual === 'on' ? <h3>Glasuvane za aktualniq vupros <i className="fa fa-arrow-right"></i></h3> : null}
+                    {actual === 'on' ? <h3>Гласуване за актуалният въпрос <i className="fa fa-arrow-right"></i></h3> : null}
                     <form id="votesForm" method="post">
                         <input type="hidden" />
                     </form>
@@ -120,23 +120,27 @@ const CurrentQuestion = ({ id, title, image, createdOn, userName, question, actu
                     <div className="d-flex justify-content-end vote-container">
                         <span className="mr-3 text-danger" id="errorField"></span>
                         <div className="mr-1">
-                            <i data-toggle="tooltip"
+                            <span>За  </span><img
+                                src="./images/thumb-up.png"
+                                data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Like"
                                 onClick={upVote}
                                 id="upVoteIcont"
-                                className="fa fa-thumbs-up hover-button-type"></i>
+                                className="fa fa-thumbs-up hover-button-type thumb__upImage" />
                         </div>
-                        <div id="votesCount" className="mr-4 text-right">
+                        <div id="votesCount" className="mr-5 text-right">
                             {positiveVotes}
                         </div>
                         <div className="mr-1">
-                            <i data-toggle="tooltip"
+                            <span>Против </span> <img
+                                src="./images/thumb-down.png"
+                                data-toggle="tooltip"
                                 data-placement="bottom"
                                 title="Un like"
                                 id="downVoteIcont"
                                 onClick={downVote}
-                                className="fa fa-thumbs-down hover-button-type"></i>
+                                className="fa fa-thumbs-down hover-button-type thumb__downImage" />
                         </div>
                         <div id="votesCount" className="mr-4 text-right">
                             {negativeVotes}

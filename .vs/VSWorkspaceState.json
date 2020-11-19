@@ -3,14 +3,14 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\AuthO",
-    "\\src\\components\\Question",
+    "\\src\\components\\ActualQuestion",
+    "\\src\\components\\Header",
     "\\src\\Pages",
     "\\src\\Pages\\AdminPage",
     "\\src\\Pages\\Comments",
     "\\src\\Pages\\ForumPage",
     "\\src\\Pages\\Home"
   ],
-  "SelectedNode": "\\src\\components\\AuthListener\\FetchData.js",
+  "SelectedNode": "\\src\\components\\Question\\CurrentQuestion.js",
   "PreviewInSolutionExplorer": false
 }

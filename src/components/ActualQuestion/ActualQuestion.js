@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useStateValue } from '../ContextApi/StateProvider';
 import { useEffect } from 'react';
 import Loader from '../Loader/Loader';
@@ -16,7 +16,7 @@ const ActualQeustion = () => {
     const [currData, setCurrData] = useState({
         data: [],
     })
-    
+
     const [state, setState] = useState({
     });
 
@@ -89,21 +89,30 @@ const ActualQeustion = () => {
 
 
     //}, [fetchData]);
-    
+
     return <div className="Home">
 
-        <h2 className="text-center pt-3 pb-3">Aktualen vupros</h2>
+
         {role === "Admin" ? <button onClick={showData} >Test context api store</button> : null}
 
-        {currData === undefined ? <Loader /> :
+        {currData?.data[0] == undefined ?
+            <div className="text-center">
+                <Loader />
+            </div> :
 
             currData?.data.map((data, index) => (
                 <div key={index} className="row container">
+                    {currData !== undefined ? <div className="text-center m-auto timer__counter w-100">
+                        <div className="text-right">
+                            Сегашно време: <Clock /> <br />
+                        </div>
 
-                    {currData !== undefined ? <div className="text-center m-auto timer__counter">
-                        Sega6no vreme: <Clock /> <br />
-                        Ostava6to vreme: <CountDown date={data.endDate.toString()} /> <br />
-                        Kraina data: {new Date(data.endDate.toString()).toDateString()}
+                        <div
+                            className="text-center pt-3 pb-3">
+                            <h2>Актуален въпрос <small>оставащо време: <CountDown date={data.endDate.toString()} /></small> </h2>
+                            Крайна дата: {new Date(data.endDate.toString()).toDateString()}
+                        </div>
+
                     </div> : null}
 
                     <CurrentQuestion

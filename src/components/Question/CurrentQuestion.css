@@ -1,3 +1,11 @@
 .question__image {
     width: 100px;
 }
+
+.thumb__downImage {
+    width: 36px;
+}
+
+.thumb__upImage {
+    width: 36px;
+}

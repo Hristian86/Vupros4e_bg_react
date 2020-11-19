@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { upPage } from '../UpPage/Uppage';
 import { Link } from 'react-router-dom';
 import Avatar from './Avatar';
@@ -79,7 +79,7 @@ const HeaderLinks = () => {
                 className="header__link text-white shadow-box"
                 onClick={upPage}
                 to="/">
-                Na4alo
+                Начало
                     </Link>
 
         </div>
@@ -89,7 +89,7 @@ const HeaderLinks = () => {
                 className="header__link text-white shadow-box"
                 onClick={upPage}
                 to="/">
-                Pravila
+                Правила
                     </Link>
         </div>
 
@@ -98,7 +98,7 @@ const HeaderLinks = () => {
                 className="header__link text-white shadow-box"
                 onClick={upPage}
                 to="/forumpage">
-                Forum
+                Форум
                     </Link>
         </div>
 
@@ -107,7 +107,7 @@ const HeaderLinks = () => {
                 className="header__link text-white shadow-box"
                 onClick={upPage}
                 to="/">
-                Statistika
+                Статистика
                     </Link>
         </div>
 
@@ -116,7 +116,7 @@ const HeaderLinks = () => {
                 className="header__link text-white shadow-box"
                 onClick={upPage}
                 to="/">
-                Materiali po temata
+                Материали по темата
                     </Link>
         </div>
 
@@ -125,7 +125,7 @@ const HeaderLinks = () => {
                 className="header__link text-white shadow-box"
                 onClick={upPage}
                 to="/">
-                Za nas
+                За нас
             </Link>
         </div>
 
@@ -138,14 +138,14 @@ const HeaderLinks = () => {
                     <div className="Sign__in">
                         <span
                         className="header__optionsLineTwo">
-                            <Avatar message={"Hello " + state?.user?.user} />
+                            <Avatar message={"Здравей " + state?.user?.user} />
                         </span>
                 </div>
                 :
                 <div className="">
                     <span
                         className="header__optionsLineOne">
-                            <Avatar message={"Sign in"}/>
+                            <Avatar message={"Регистриране"}/>
                     </span>
                 </div>
             }
